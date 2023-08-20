@@ -18,7 +18,7 @@ public class ComplexityAnalyzer {
             +"\nfrom math import factorial"
             +"\n"
             +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
-            +"\n\treturn " + objectiveFunctionBody
+            +"\n\treturn " + objectiveFunctionBody.t
             +"\n"
             +String.format("\nx=np.arange(%d, %d, %d)",startRange, endRange, incrementValue)
             +"\ny="+Arrays.toString(generateRunningTimes(startRange, endRange, incrementValue))
@@ -27,7 +27,7 @@ public class ComplexityAnalyzer {
             +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
             +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
             +"\nplt.scatter(x, y)"
-            +"\nplt.plot(x_line, y_line)"
+            +"\nplt.plot(x_line, y_line,\"r-\")"
             +"\nplt.show()"
         );
         
@@ -41,9 +41,10 @@ public class ComplexityAnalyzer {
         char argument='a';
         for(int i=0; i<argsLength-1; i++){
             argsList+=argument;
-            argsList+=", ";
+            argsList+=",";
+            argument++;
         }
-        argsList+=argument;
+        argsList+=argsLength!=1?argument:"";
 
         return argsList;
     }
@@ -52,13 +53,15 @@ public class ComplexityAnalyzer {
         long pointCount=(endRange-startRange)/incrementValue;
         long runningTimes[] = new long[(int) pointCount];
         long startTime, endTime, totalTime;
+        int i=0;
             for(long n=startRange; n<endRange; n+=incrementValue){
             long[] testArray = randomizeArray(n);
             startTime = System.nanoTime();
             Main.method(testArray, n);
             endTime=System.nanoTime();
             totalTime=endTime-startTime;
-            runningTimes[(int) (n-startRange)]=totalTime;
+            runningTimes[i]=totalTime;
+            i++;
         }
         return runningTimes;
     }
@@ -82,7 +85,7 @@ public class ComplexityAnalyzer {
                 return new Pair<String, Integer>("a*log2(x)+b", 2);
 
             case POLYNOMIAL:
-                return new Pair<String, Integer>("ax**2+b", 2);
+                return new Pair<String, Integer>("a*x**2+b", 2);
 
             case LINEARITHMIC:
                 return new Pair<String, Integer>("a*x*log2(x)+b", 2);
@@ -94,7 +97,7 @@ public class ComplexityAnalyzer {
                 return new Pair<String, Integer>("a*factorial(x)", 3);
 
             default:
-                return null;
+                return new Pair<String, Integer>("help me debug", 0);
         }
     }
 }
