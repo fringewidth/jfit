@@ -1,0 +1,11 @@
+package jFit;
+
+
+public enum EFFICIENCY_CLASS{
+    CONSTANT,
+    LOGARITHMIC,
+    POLYNOMIAL,
+    LINEARITHMIC,
+    EXPONENTIAL,
+    FACTORIAL
+};
