@@ -14,7 +14,6 @@ public class ComplexityAnalyzer {
             "\nfrom scipy.optimize import curve_fit"
             +"\nimport numpy as np"
             +"\nfrom matplotlib import pyplot as plt"
-            +"\nfrom math import log2"
             +"\nfrom math import factorial"
             +"\n"
             +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
@@ -82,7 +81,7 @@ public class ComplexityAnalyzer {
                 return new Pair<String, Integer>("a", 1);
 
             case LOGARITHMIC:
-                return new Pair<String, Integer>("a*log2(x)+b", 2);
+                return new Pair<String, Integer>("a*np.log2(x)+b", 2);
 
             case POLYNOMIAL:
                 return new Pair<String, Integer>("a*x**2+b", 2);
