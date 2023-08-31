@@ -12,6 +12,7 @@ public class ComplexityAnalyzer {
         String objectiveFunctionArgs=generateObjectiveFunctionArgs(argsLength);
         try {
             FileWriter fileWriter = new FileWriter("fit.py");
+
             fileWriter.write(
             "\nfrom scipy.optimize import curve_fit"
             +"\nimport numpy as np"
@@ -31,6 +32,7 @@ public class ComplexityAnalyzer {
             +"\nplt.plot(x_line, y_line,\"r-\")"
             +"\nplt.show()"
         );
+        
         System.out.println("Written to file.py successfully");
         fileWriter.close();
         } catch (IOException e) {
