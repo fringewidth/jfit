@@ -1,5 +1,4 @@
 package jFit;
-import org.python.util.PythonInterpreter;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -9,27 +8,25 @@ public class ComplexityAnalyzer {
         Pair<String, Integer> objectiveFunctionBody=chooseObjectiveFunction(efficiencyClass);
         int argsLength=objectiveFunctionBody.u;
         String objectiveFunctionArgs=generateObjectiveFunctionArgs(argsLength);
-        try (PythonInterpreter pythonInterpreter = new PythonInterpreter()) {
-            pythonInterpreter.exec(
-                "\nfrom scipy.optimize import curve_fit"
-                +"\nimport numpy as np"
-                +"\nfrom matplotlib import pyplot as plt"
-                +"\nfrom math import factorial"
-                +"\n"
-                +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
-                +"\n\treturn " + objectiveFunctionBody.t
-                +"\n"
-                +String.format("\nx=np.arange(%d, %d, %d)",startRange, endRange, incrementValue)
-                +"\ny="+Arrays.toString(generateRunningTimes(startRange, endRange, incrementValue))
-                +"\npopt, _ = curve_fit(objective, x, y)"
-                +String.format("\n%s = popt",objectiveFunctionArgs)
-                +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
-                +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
-                +"\nplt.scatter(x, y)"
-                +"\nplt.plot(x_line, y_line,\"r-\")"
-                +"\nplt.show()"
-            );
-        }
+        System.out.println(
+            "\nfrom scipy.optimize import curve_fit"
+            +"\nimport numpy as np"
+            +"\nfrom matplotlib import pyplot as plt"
+            +"\nfrom math import factorial"
+            +"\n"
+            +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
+            +"\n\treturn " + objectiveFunctionBody.t
+            +"\n"
+            +String.format("\nx=np.arange(%d, %d, %d)",startRange, endRange, incrementValue)
+            +"\ny="+Arrays.toString(generateRunningTimes(startRange, endRange, incrementValue))
+            +"\npopt, _ = curve_fit(objective, x, y)"
+            +String.format("\n%s = popt",objectiveFunctionArgs)
+            +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
+            +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
+            +"\nplt.scatter(x, y)"
+            +"\nplt.plot(x_line, y_line,\"r-\")"
+            +"\nplt.show()"
+        );
         
     }
 
