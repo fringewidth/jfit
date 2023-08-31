@@ -41,4 +41,4 @@ jFit is a Java utility that automates the generation of Python code for empirica
 
 - Support for $O(n^k)$ is planned
 
-- Copy-paste the generated code into python and run.
+- Run ```fit.py```

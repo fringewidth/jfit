@@ -1,6 +1,8 @@
 package jFit;
 import java.util.Arrays;
 import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ComplexityAnalyzer {
     public static void generateMatPlotLib(long startRange, long endRange, long incrementValue, EFFICIENCY_CLASS efficiencyClass){
@@ -8,7 +10,9 @@ public class ComplexityAnalyzer {
         Pair<String, Integer> objectiveFunctionBody=chooseObjectiveFunction(efficiencyClass);
         int argsLength=objectiveFunctionBody.u;
         String objectiveFunctionArgs=generateObjectiveFunctionArgs(argsLength);
-        System.out.println(
+        try {
+            FileWriter fileWriter = new FileWriter("fit.py");
+            fileWriter.write(
             "\nfrom scipy.optimize import curve_fit"
             +"\nimport numpy as np"
             +"\nfrom matplotlib import pyplot as plt"
@@ -27,7 +31,11 @@ public class ComplexityAnalyzer {
             +"\nplt.plot(x_line, y_line,\"r-\")"
             +"\nplt.show()"
         );
-        
+        System.out.println("Written to file.py successfully");
+        fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
     }
 
     private static String generateObjectiveFunctionArgs(int argsLength) {

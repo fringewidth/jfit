@@ -3,16 +3,14 @@ package jFit;
 public class Main {
 
     public static void method(long[] array, long n) {
-        long temp;
-        for(int i=0; i<n-1; i++){
-            for(int j=0; j<n-i-1; j++){
-                if(array[j]>array[j+1]){
-                    temp=array[j+1];
-                    array[j+1]=array[j];
-                    array[j]=temp;
-                }
-            }
-        }
+        /*
+         replace function body with your function
+         */
+        int sum=0;
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++)
+                sum+=array[i];
+        }  
     }
 
     public static void main(String[] args){
