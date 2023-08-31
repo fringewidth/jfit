@@ -1,34 +1,35 @@
 package jFit;
+import org.python.util.PythonInterpreter;
 import java.util.Arrays;
 import java.util.Random;
 
 public class ComplexityAnalyzer {
     public static void generateMatPlotLib(long startRange, long endRange, long incrementValue, EFFICIENCY_CLASS efficiencyClass){
         long pointCount=(endRange-startRange)/incrementValue;
-
         Pair<String, Integer> objectiveFunctionBody=chooseObjectiveFunction(efficiencyClass);
         int argsLength=objectiveFunctionBody.u;
         String objectiveFunctionArgs=generateObjectiveFunctionArgs(argsLength);
-
-        System.out.println(
-            "\nfrom scipy.optimize import curve_fit"
-            +"\nimport numpy as np"
-            +"\nfrom matplotlib import pyplot as plt"
-            +"\nfrom math import factorial"
-            +"\n"
-            +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
-            +"\n\treturn " + objectiveFunctionBody.t
-            +"\n"
-            +String.format("\nx=np.arange(%d, %d, %d)",startRange, endRange, incrementValue)
-            +"\ny="+Arrays.toString(generateRunningTimes(startRange, endRange, incrementValue))
-            +"\npopt, _ = curve_fit(objective, x, y)"
-            +String.format("\n%s = popt",objectiveFunctionArgs)
-            +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
-            +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
-            +"\nplt.scatter(x, y)"
-            +"\nplt.plot(x_line, y_line,\"r-\")"
-            +"\nplt.show()"
-        );
+        try (PythonInterpreter pythonInterpreter = new PythonInterpreter()) {
+            pythonInterpreter.exec(
+                "\nfrom scipy.optimize import curve_fit"
+                +"\nimport numpy as np"
+                +"\nfrom matplotlib import pyplot as plt"
+                +"\nfrom math import factorial"
+                +"\n"
+                +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
+                +"\n\treturn " + objectiveFunctionBody.t
+                +"\n"
+                +String.format("\nx=np.arange(%d, %d, %d)",startRange, endRange, incrementValue)
+                +"\ny="+Arrays.toString(generateRunningTimes(startRange, endRange, incrementValue))
+                +"\npopt, _ = curve_fit(objective, x, y)"
+                +String.format("\n%s = popt",objectiveFunctionArgs)
+                +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
+                +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
+                +"\nplt.scatter(x, y)"
+                +"\nplt.plot(x_line, y_line,\"r-\")"
+                +"\nplt.show()"
+            );
+        }
         
     }
 
@@ -90,10 +91,10 @@ public class ComplexityAnalyzer {
                 return new Pair<String, Integer>("a*x*log2(x)+b", 2);
 
             case EXPONENTIAL:
-            return new Pair<String, Integer>("a*2**(c*x)", 3);
+            return new Pair<String, Integer>("a*2**(b*x)", 2);
 
             case FACTORIAL:
-                return new Pair<String, Integer>("a*factorial(x)", 3);
+                return new Pair<String, Integer>("a*factorial(x)", 1);
 
             default:
                 return new Pair<String, Integer>("help me debug", 0);
