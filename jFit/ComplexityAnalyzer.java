@@ -95,7 +95,7 @@ public class ComplexityAnalyzer {
                 return new Pair<String, Integer>("a*x**2+b", 2);
 
             case LINEARITHMIC:
-                return new Pair<String, Integer>("a*x*log2(x)+b", 2);
+                return new Pair<String, Integer>("a*x*np.log2(x)+b", 2);
 
             case EXPONENTIAL:
             return new Pair<String, Integer>("a*2**(b*x)", 2);

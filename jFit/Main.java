@@ -15,7 +15,7 @@ public class Main {
     }
 
     public static void main(String[] args){
-        ComplexityAnalyzer.generateMatPlotLib(0, 5000, 10, EFFICIENCY_CLASS.LINEARITHMIC);
+        ComplexityAnalyzer.generateMatPlotLib(0, 5000, 10, EFFICIENCY_CLASS.POLYNOMIAL);
         String pyFilePath = "../fit.py";
         runPy(pyFilePath);
 
