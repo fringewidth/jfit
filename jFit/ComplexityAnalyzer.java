@@ -30,7 +30,8 @@ public class ComplexityAnalyzer {
             +String.format("\n%s = popt",objectiveFunctionArgs)
             +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
             +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
-            +"\nplt.scatter(x, y)"
+            +"\nplt.style.use(\"dark_background\")"
+            +"\nplt.scatter(x, y, marker=\".\")"
             +"\nplt.plot(x_line, y_line,\"r-\")"
             +"\nplt.show()"
         );
