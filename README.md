@@ -41,3 +41,6 @@ Please note that jFit currently supports the analysis of algorithms that work wi
     [Support for $O(n^k)$ is planned]
 
 - Run the script.
+
+## Examples
+- See [examples.md](./examples.md) for examples and specific use cases.
