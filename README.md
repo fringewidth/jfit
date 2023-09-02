@@ -8,7 +8,7 @@ jFit is a Java utility that automates the generation of Python code for empirica
 - jFit relies on the Java Runtime Environment (JRE) for its proper execution. To run jFit, a compatible version of JDK and a compatible JVM must be installed on the system. Please refer to the official documentation for specific version requirements
 - To execute the generated Python code, install the following packages using pip
     ```sh
-    pip scipy numpy matplotlib
+    pip install scipy numpy matplotlib
     ```
 
 ## Installation

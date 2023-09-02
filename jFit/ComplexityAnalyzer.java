@@ -1,15 +1,17 @@
 package jFit;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class ComplexityAnalyzer {
-    public static void generateMatPlotLib(long startRange, long endRange, long incrementValue, EFFICIENCY_CLASS efficiencyClass){
+    public static void generatePy(int startRange, int endRange, int incrementValue, EFFICIENCY_CLASS efficiencyClass){
         long pointCount=(endRange-startRange)/incrementValue;
         Pair<String, Integer> objectiveFunctionBody=chooseObjectiveFunction(efficiencyClass);
         int argsLength=objectiveFunctionBody.u;
         String objectiveFunctionArgs=generateObjectiveFunctionArgs(argsLength);
+        
         try {
             FileWriter fileWriter = new FileWriter("fit.py");
 
@@ -35,6 +37,7 @@ public class ComplexityAnalyzer {
         
         System.out.println("Written to file.py successfully");
         fileWriter.close();
+
         } catch (IOException e) {
             System.out.println("Error");
         }
@@ -44,6 +47,7 @@ public class ComplexityAnalyzer {
         if(argsLength<1){
             return null;
         }
+
         String argsList="";
         char argument='a';
         for(int i=0; i<argsLength-1; i++){
@@ -56,12 +60,13 @@ public class ComplexityAnalyzer {
         return argsList;
     }
 
-    private static long[] generateRunningTimes(long startRange, long endRange, long incrementValue) {
+    private static long[] generateRunningTimes(int startRange, int endRange, int incrementValue) {
         long pointCount=(endRange-startRange)/incrementValue;
         long runningTimes[] = new long[(int) pointCount];
         long startTime, endTime, totalTime;
         int i=0;
-            for(long n=startRange; n<endRange; n+=incrementValue){
+
+        for(int n=startRange; n<endRange; n+=incrementValue){
             long[] testArray = randomizeArray(n);
             startTime = System.nanoTime();
             Main.method(testArray, n);
@@ -73,9 +78,10 @@ public class ComplexityAnalyzer {
         return runningTimes;
     }
 
-    private static long[] randomizeArray(long n) {
-        long[] randomArray = new long[(int)n];
+    private static long[] randomizeArray(int n) {
+        long[] randomArray = new long[n];
         Random random = new Random();
+
         for(int i=0; i<n; i++){
             randomArray[i]=random.nextLong();
         }
@@ -89,13 +95,13 @@ public class ComplexityAnalyzer {
                 return new Pair<String, Integer>("a", 1);
 
             case LOGARITHMIC:
-                return new Pair<String, Integer>("a*np.log2(x)+b", 2);
+                return new Pair<String, Integer>("a*np.log(x+b)+c", 3);
 
             case POLYNOMIAL:
                 return new Pair<String, Integer>("a*x**2+b", 2);
 
             case LINEARITHMIC:
-                return new Pair<String, Integer>("a*x*np.log2(x)+b", 2);
+                return new Pair<String, Integer>("a*x*np.log2(x+b)+c", 3);
 
             case EXPONENTIAL:
             return new Pair<String, Integer>("a*2**(b*x)", 2);
