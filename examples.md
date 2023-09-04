@@ -56,5 +56,5 @@ Similarly, here's the jFit i/p & o/p for all other efficiency classes
     }
     ```
     <img src="./example-images/n-plot.png" alt= "Array Sum Plot" width="500"> <br>
-    *Note:* Attempting to analyse constant time curves over large ranges of n results in a plot with several segmented lines, most likely due to caching effects. jFit currently can't fit a good curve to such data, but support for segmented regression is planned.
+    *Note:* Attempting to analyse linear time curves over large ranges of n results in a plot with several segmented lines, most likely due to caching effects. jFit currently can't fit a good curve to such data, but support for segmented regression is planned.
 

@@ -34,12 +34,13 @@ Please note that jFit currently supports the analysis of algorithms that work wi
 
 - The following efficiency classes are currently avaliable:
     - ```EFFICIENCY_CLASS.CONSTANT``` for $O(1)$ complexities
+    - ```EFFICIENCY_CLASS.LOGARITHMIC``` for $O(\log n)$ complexities
     - ```EFFICIENCY_CLASS.POLYNOMIAL``` for $O(n^2)$ complexities
     - ```EFFICIENCY_CLASS.LINEARITHMIC``` for $O(n\log n)$ complexities
     - ```EFFICIENCY_CLASS.EXPONENTIAL``` for $O(2^n)$ complexities
     - ```EFFICIENCY_CLASS.FACTORIAL``` for $O(n!)$ complexities<br>
     Support for $O(n^k)$ is planned. <br>
-*Note:* Attempting to analyse constant time curves over large ranges of n results in a plot with several segmented lines, most likely due to caching effects. jFit currently can't fit a good curve to such data, but support for segmented regression is planned.
+*Note:* Attempting to analyse linear time curves over large ranges of n results in a plot with several segmented lines, most likely due to caching effects. jFit currently can't fit a good curve to such data, but support for segmented regression is planned.
 
 - Run the script.
 
