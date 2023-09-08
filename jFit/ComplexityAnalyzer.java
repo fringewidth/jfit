@@ -21,15 +21,15 @@ public class ComplexityAnalyzer {
             +"\nfrom matplotlib import pyplot as plt"
             +"\nfrom math import factorial"
             +"\n"
-            +String.format("\ndef objective(x,%s):",objectiveFunctionArgs)
+            +String.format("\ndef objective(x%s):",objectiveFunctionArgs)
             +"\n\treturn " + objectiveFunctionBody.t
             +"\n"
             +String.format("\nx=np.arange(%d, %d, %d)",startRange, endRange, incrementValue)
             +"\ny="+Arrays.toString(generateRunningTimes(startRange, endRange, incrementValue))
             +"\npopt, _ = curve_fit(objective, x, y)"
-            +String.format("\n%s = popt",objectiveFunctionArgs)
+            +String.format("\n%s = popt",objectiveFunctionArgs.substring(1))
             +String.format("\nx_line=np.linspace(%d,%d,%d)",startRange,endRange,pointCount)
-            +String.format("\ny_line=objective(x,%s)",objectiveFunctionArgs)
+            +String.format("\ny_line=objective(x%s)",objectiveFunctionArgs)
             +"\nplt.style.use(\"dark_background\")"
             +"\nplt.scatter(x, y, marker=\".\")"
             +"\nplt.plot(x_line, y_line,\"r-\")"
@@ -46,17 +46,16 @@ public class ComplexityAnalyzer {
 
     private static String generateObjectiveFunctionArgs(int argsLength) {
         if(argsLength<1){
-            return null;
+            return "";
         }
 
         String argsList="";
         char argument='a';
-        for(int i=0; i<argsLength-1; i++){
-            argsList+=argument;
+        for(int i=0; i<argsLength; i++){
             argsList+=",";
+            argsList+=argument;
             argument++;
         }
-        argsList+=argsLength!=1?argument:"";
 
         return argsList;
     }
@@ -93,7 +92,7 @@ public class ComplexityAnalyzer {
         
         switch(efficiencyClass){
             case CONSTANT:
-                return new Pair<String, Integer>("a", 1);
+                return new Pair<String, Integer>("a*x/x", 1);
 
             case LOGARITHMIC:
                 return new Pair<String, Integer>("a*np.log(x+b)+c", 3);

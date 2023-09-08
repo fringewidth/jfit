@@ -6,18 +6,15 @@ public class Main {
         /*
          replace function body with your function.
          */
-        int sum=0;
-        for(int i=0; i<n; i++){
-            sum+=array[i];
-        }
+        double ln7 = Math.log(7);
+        double logn = Math.log(array[n-1])/ln7;
     }
 
 
     public static void main(String[] args){
-        ComplexityAnalyzer.generatePy(0, 5000, 10, EFFICIENCY_CLASS.LINEAR);
+        ComplexityAnalyzer.generatePy(1, 5001, 10, EFFICIENCY_CLASS.CONSTANT);
         String pyFilePath = "../fit.py";
         runPy(pyFilePath);
-
     }
 
     public static void runPy(String pyFilePath){
@@ -38,7 +35,5 @@ public class Main {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        
     }
-
 }

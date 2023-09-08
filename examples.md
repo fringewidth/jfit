@@ -58,3 +58,13 @@ Similarly, here's the jFit i/p & o/p for all other efficiency classes
     <img src="./example-images/n-plot.png" alt= "Array Sum Plot" width="500"> <br>
     *Note:* Attempting to analyse linear time curves over large ranges of n results in a plot with several segmented lines, most likely due to caching effects. jFit currently can't fit a good curve to such data, but support for segmented regression is planned.
 
+- ### $O(1)$ algorithms
+    ```java
+    public static void method(long[] array, int n) {
+        double ln7 = Math.log(7);
+        double logn = Math.log(array[n-1])/ln7;
+    }
+    ```
+    <img src="./example-images/1-plot.png" alt= "Log base 7 plot" width="500"> <br>
+    *Note:* Attempting to analyse linear time curves over large ranges of n results in a plot with several segmented lines, most likely due to caching effects. jFit currently can't fit a good curve to such data, but support for segmented regression is planned.
+
