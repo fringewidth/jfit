@@ -35,6 +35,7 @@ Please note that jFit currently supports the analysis of algorithms that work wi
 - The following efficiency classes are currently avaliable:
     - ```EFFICIENCY_CLASS.CONSTANT``` for $O(1)$ complexities
     - ```EFFICIENCY_CLASS.LOGARITHMIC``` for $O(\log n)$ complexities
+    - ```EFFICIENCY_CLASS.LINEAR``` for $O(n)$ complexities
     - ```EFFICIENCY_CLASS.POLYNOMIAL``` for $O(n^2)$ complexities
     - ```EFFICIENCY_CLASS.LINEARITHMIC``` for $O(n\log n)$ complexities
     - ```EFFICIENCY_CLASS.EXPONENTIAL``` for $O(2^n)$ complexities

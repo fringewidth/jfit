@@ -98,6 +98,9 @@ public class ComplexityAnalyzer {
             case LOGARITHMIC:
                 return new Pair<String, Integer>("a*np.log(x+b)+c", 3);
 
+            case LINEAR:
+                return new Pair<String,Integer>("a*x+b", 2);
+
             case POLYNOMIAL:
                 return new Pair<String, Integer>("a*x**2+b", 2);
 

@@ -4,8 +4,9 @@ package jFit;
 public enum EFFICIENCY_CLASS{
     CONSTANT,
     LOGARITHMIC,
+    LINEAR,
     POLYNOMIAL,
     LINEARITHMIC,
     EXPONENTIAL,
-    FACTORIAL
+    FACTORIAL,
 };

@@ -14,7 +14,7 @@ public class Main {
 
 
     public static void main(String[] args){
-        ComplexityAnalyzer.generatePy(0, 5000, 10, EFFICIENCY_CLASS.LINEARITHMIC);
+        ComplexityAnalyzer.generatePy(0, 5000, 10, EFFICIENCY_CLASS.LINEAR);
         String pyFilePath = "../fit.py";
         runPy(pyFilePath);
 
