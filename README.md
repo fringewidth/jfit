@@ -1,4 +1,4 @@
-# jFit
+# jFit (deprecated) (see [jfit2](https://github.com/fringewidth/jfit2))
 jFit is a Java utility that automates the generation of Python code for empirical complexity analysis by producing plots of time against input size (n) using Matplotlib, and fitting an appropriate curve
 
 ## Features
